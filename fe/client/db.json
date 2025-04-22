@@ -1,0 +1,73 @@
+{
+  "cinemas": [
+    {
+      "name": "CGV",
+      "address": "bắc từ liêm",
+      "contact": 147852,
+      "province": "province2",
+      "imageUrl": "https://res.cloudinary.com/dxhgeg7vi/image/upload/v1740420632/omallck2pvdrnwzcppjw.jpg",
+      "id": 1
+    },
+    {
+      "name": "Galaxy",
+      "address": "Long Biên",
+      "contact": 852963,
+      "province": "province2",
+      "imageUrl": "https://res.cloudinary.com/dxhgeg7vi/image/upload/v1740478458/bnzglcaoesmoydmdacer.jpg",
+      "id": 2
+    }
+  ],
+  
+    "blogs": [
+      {
+        "id": 1,
+        "thumbnail": ["https://cdn.galaxycine.vn/media/2024/4/10/300x450_1712725639462.jpg"],
+        "trailer_url": "https://www.youtube.com/watch?v=xyz123",
+        "date": "2025/04/05",
+        "author": "Film Go",
+        "title": "Địa Đạo: Mặt Trời Trong Bóng Tối",
+        "description": "Bộ phim kể về những chiến sĩ kiên cường xây dựng hệ thống địa đạo huyền thoại trong cuộc kháng chiến chống Mỹ.",
+        "likes": 1342,
+        "comments": 289,
+        "presenter": 1102
+      },
+      {
+        "id": 2,
+        "thumbnail": ["https://cdn.galaxycine.vn/media/2024/4/5/am-duong-lo-300x450_1712307573164.jpg"],
+        "trailer_url": "https://www.youtube.com/watch?v=abc456",
+        "date": "2025/03/28",
+        "author": "Film Go",
+        "title": "Âm Dương Lộ",
+        "description": "Phim kinh dị khai thác thế giới tâm linh, theo chân một nhóm người điều tra những hiện tượng kỳ bí tại ngôi nhà hoang.",
+        "likes": 1098,
+        "comments": 198,
+        "presenter": 934
+      },
+      {
+        "id": 3,
+        "thumbnail": ["https://cdn.galaxycine.vn/media/2024/4/9/pooh2-300x450_1712653560538.jpg"],
+        "trailer_url": "https://www.youtube.com/watch?v=PoohHorror",
+        "date": "2025/04/12",
+        "author": "Film Go",
+        "title": "Winnie the Pooh: Blood and Honey 2",
+        "description": "Phần tiếp theo của phim kinh dị Winnie the Pooh đầy máu me và ám ảnh, mang đến trải nghiệm đáng sợ hơn bao giờ hết.",
+        "likes": 753,
+        "comments": 134,
+        "presenter": 812
+      },
+      {
+        "id": 4,
+        "thumbnail": ["https://cdn.galaxycine.vn/media/2024/4/12/fastx2-300x450_1712902016181.jpg"],
+        "trailer_url": "https://www.youtube.com/watch?v=fastX2",
+        "date": "2025/04/26",
+        "author": "Film Go",
+        "title": "Fast & Furious X2",
+        "description": "Dom Toretto và gia đình tiếp tục lao vào những pha hành động đỉnh cao, đối mặt với kẻ thù mới trong phần tiếp theo của loạt phim đình đám.",
+        "likes": 2301,
+        "comments": 421,
+        "presenter": 1800
+      }
+    ]
+  
+  
+}
