@@ -1,9 +1,7 @@
 import { CalendarOutlined, HomeOutlined, MailOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Button, Card, Col, Divider, Row } from 'antd';
+import { Avatar, Card, Col, Divider, Row } from 'antd';
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
-import { handleLogoutUser } from '../../../app/slices/appSlice';
 import { useGetProfile } from '../../../services/auth/profile';
 import BasicTemplate from '../../templates/BasicTemplate';
 import PasswordUpdateModal from './PasswordUpdateModal';
@@ -45,7 +43,7 @@ const ProfileView = () => {
                         title={<div className="text-center mt-2 mb-4 text-lg font-bold">{name}</div>}
                         description={
                             <div className="text-center text-sm text-gray-500">
-                                Status: <span className="font-medium">{status}</span>
+                                Trạng thái: <span className="font-medium">{status}</span>
                             </div>
                         }
                     />
@@ -63,21 +61,21 @@ const ProfileView = () => {
                         <Col span={24}>
                             <div className="flex items-center mb-2">
                                 <PhoneOutlined className="mr-2 text-lg text-gray-600" />
-                                <span className="font-medium text-gray-600">Phone:</span>
+                                <span className="font-medium text-gray-600">SĐT:</span>
                                 <span className="ml-2">{phone}</span>
                             </div>
                         </Col>
                         <Col span={24}>
                             <div className="flex items-center mb-2">
                                 <HomeOutlined className="mr-2 text-lg text-gray-600" />
-                                <span className="font-medium text-gray-600">Address:</span>
+                                <span className="font-medium text-gray-600">Địa chỉ:</span>
                                 <span className="ml-2">{address}</span>
                             </div>
                         </Col>
                         <Col span={24}>
                             <div className="flex items-center mb-2">
                                 <CalendarOutlined className="mr-2 text-lg text-gray-600" />
-                                <span className="font-medium text-gray-600">Birthday:</span>
+                                <span className="font-medium text-gray-600">Ngày sinh:</span>
                                 <span className="ml-2">{birthday}</span>
                             </div>
                         </Col>
@@ -97,23 +95,6 @@ const ProfileView = () => {
                         />
                         <PasswordUpdateModal />
                         <TicketModal />
-                        {/* <Button
-                            danger
-                            onClick={() => {
-                                Swal.fire({
-                                    icon: 'info',
-                                    text: 'Bạn chắc chắn muốn đăng xuất?',
-                                    showConfirmButton: true,
-                                    showCancelButton: true,
-                                }).then((res) => {
-                                    if (res.isConfirmed) {
-                                        dispatch(handleLogoutUser());
-                                    }
-                                });
-                            }}
-                        >
-                            Logout
-                        </Button> */}
                     </div>
                 </Card>
             </div>

@@ -47,11 +47,11 @@ const ProfileUpdateModal = ({ data }) => {
     return (
         <div>
             <Button type="primary" onClick={handleOpenModal}>
-                Edit Profile
+                Cập nhập thông tin
             </Button>
 
             <Modal
-                title="Update Profile"
+                title="Cập nhập thông tin"
                 open={visible}
                 onCancel={handleCloseModal}
                 footer={null}
@@ -77,12 +77,12 @@ const ProfileUpdateModal = ({ data }) => {
                     >
                         <Input disabled />
                     </Form.Item>
-                    <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Vui lòng nhập name' }]}>
+                    <Form.Item label="Tên" name="name" rules={[{ required: true, message: 'Vui lòng nhập name' }]}>
                         <Input />
                     </Form.Item>
 
                     <Form.Item
-                        label="Phone"
+                        label="Số điện thoại"
                         name="phone"
                         rules={[{ required: true, message: 'Vui lòng nhập số điện thoại' }]}
                     >
@@ -90,7 +90,7 @@ const ProfileUpdateModal = ({ data }) => {
                     </Form.Item>
 
                     <Form.Item
-                        label="Address"
+                        label="Địa chỉ"
                         name="address"
                         rules={[{ required: true, message: 'Vui lòng nhập địa chỉ' }]}
                     >
@@ -98,7 +98,7 @@ const ProfileUpdateModal = ({ data }) => {
                     </Form.Item>
 
                     <Form.Item
-                        label="Birthday"
+                        label="Ngày sinh"
                         name="birthday"
                         rules={[{ required: true, message: 'Vui lòng chọn ngày sinh' }]}
                     >
@@ -107,9 +107,9 @@ const ProfileUpdateModal = ({ data }) => {
 
                     <Form.Item>
                         <div className="flex justify-end space-x-2">
-                            <Button onClick={handleCloseModal}>Cancel</Button>
+                            <Button onClick={handleCloseModal}>Hủy</Button>
                             <Button type="primary" htmlType="submit">
-                                Save
+                                Lưu
                             </Button>
                         </div>
                     </Form.Item>

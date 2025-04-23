@@ -1,5 +1,5 @@
 import { Button, Form, Input, Modal } from 'antd';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useUpdatePasswordUser } from '../../../services/auth/updatePassword';
 
@@ -43,7 +43,7 @@ const PasswordUpdateModal = () => {
             </Button>
 
             <Modal
-                title="Update Password"
+                title="Thay đổi mật khẩu"
                 open={visible}
                 onCancel={handleCloseModal}
                 footer={null}

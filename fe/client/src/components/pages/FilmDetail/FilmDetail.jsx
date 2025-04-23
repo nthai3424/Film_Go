@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, Empty, Spin, Tabs } from 'antd';
+import { Breadcrumb, Spin } from 'antd';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { hanldeGetIdViewYoutobe } from '../../../helpers/handleGetIdVideoProview';
@@ -47,12 +47,6 @@ const Home = () => {
                                     <p className="font-semibold text-[#333333] text-[14px] mt-4 whitespace-pre-wrap">
                                         {dataDetail?.description}
                                     </p>
-                                    {/* <p className="font-semibold text-[#333333] text-[14px] mt-4 whitespace-pre-wrap">
-                                        Thể loại:
-                                        {dataDetail?.genres?.map((item, index) => (
-                                            <div key={index}>-{item.name}</div>
-                                        ))}
-                                    </p> */}
 
                                     <div className="relative overflow-x-auto mt-4">
                                         <table className="rounded-md overflow-hidden w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
