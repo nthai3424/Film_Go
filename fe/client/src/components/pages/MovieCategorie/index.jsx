@@ -95,34 +95,7 @@ const MovieCate = () => {
             ),
             children: <MovieList movies={firmUpShowingRender} />,
         },
-        // {
-        //     key: '2',
-        //     label: (
-        //         <Title level={4} className="uppercase font-bold">
-        //             Tất Cả Phim
-        //         </Title>
-        //     ),
-        //     children: (
-        //         <div>
-        //             {' '}
-        //             <div className="lg:w-[100%] w-[1--%] rounded-[10px] overflow-hidden flex-1">
-        //                 <div className="w-[40%] py-4"></div>
-        //                 <div className="flex lg:flex-row flex-col justify-between lg:items-start items-center">
-        //                     <div className="w-full">
-        //                         {targetGenres.map((item, index) => {
-        //                             return (
-        //                                 <div className="mb-[40px]" key={index}>
-        //                                     <h2 className="font-bold text-2xl"> {item.cate}</h2>
-        //                                     <MovieList className="p-0" movies={item.data} />
-        //                                 </div>
-        //                             );
-        //                         })}
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     ),
-        // },
+
         {
             key: '3',
             label: (
