@@ -49,6 +49,7 @@ import CreatRoom from "./pages/room/CreatRoom";
 import LayoutStaff from "./layouts/LayoutStaff";
 import UpdateUser from "./pages/user/UpdateUser";
 import StaffTiket from "./pages/ticket/StaffTicket";
+import StaffCheck from "./pages/ticket/StaffCheck";
 
 function App() {
   return (
@@ -107,7 +108,7 @@ function App() {
         </Route>
         <Route path="/staff" element={<LayoutStaff />}>
           <Route path="list-ticket" element={<StaffTiket />} />
-          <Route path="check-ticket" element={<CheckTicket />} />
+          <Route path="check-ticket" element={<StaffCheck />} />
           <Route path="detail-ticket/:id" element={<DetailTiket />} />
         </Route>
 
