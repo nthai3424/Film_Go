@@ -1000,7 +1000,7 @@ const Chair = ({
     };
 
     return (
-        <Popover content={`Pay ${price}`}>
+        <Popover content={`Giá ${price}`}>
             <div
                 className="flex flex-col items-center gap-[2px]"
                 style={{ cursor: isBooked ? 'not-allowed' : 'pointer' }}
