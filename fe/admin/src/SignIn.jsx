@@ -186,9 +186,11 @@ const Signin = () => {
       const user = JSON.parse(localStorage.getItem("user") || "[]");
 
       if (user[0].role_name === "admin") {
-        nav(`/admin`); // Redirect to the admin page if role is 'admin'
+        nav("/admin");
+      } else if (user[0].role_name === "staff") {
+        nav("/staff");
       } else {
-        nav(`/`); // Redirect to the homepage or another page if the user is not admin
+        nav("/pagenot");
       }
     },
     onError: () => {
