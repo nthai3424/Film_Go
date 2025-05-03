@@ -10,12 +10,12 @@ import {
   PlaySquareTwoTone,
   ProjectTwoTone,
   TagTwoTone,
-  UserOutlined,
   VideoCameraTwoTone,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import PageNotFound from "./../PageNotFound";
+import { MdChair } from "react-icons/md";
 
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -57,7 +57,15 @@ const items = [
     "5",
     <ClockCircleTwoTone />
   ),
-  getItem(<Link to="/admin/seats">Ghế</Link>, "16", <UserOutlined />),
+  getItem(
+    <Link to="/admin/seats">
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <MdChair size={15} color="blue" />
+        <h1 style={{ marginLeft: "10px" }}>Ghế</h1>
+      </div>
+    </Link>,
+    "16"
+  ),
   // getItem(" Vé", "7", <TagTwoTone />),
   getItem(<Link to="/admin/list-ticket">Vé</Link>, "7", <TagTwoTone />),
   getItem(<Link to="/admin/list-promo">Khuyến mãi</Link>, "8", <FireTwoTone />),
