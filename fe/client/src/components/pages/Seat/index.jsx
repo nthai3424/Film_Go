@@ -3,22 +3,6 @@ import MainTemplate from './../../templates/MainTemplate';
 
 export default function TicketPricing() {
     const [activeTab, setActiveTab] = useState('standard');
-    const [selectedTheater, setSelectedTheater] = useState('all');
-
-    const theaters = [
-        { id: 'all', name: 'Tất cả các rạp' },
-        { id: 'central', name: 'Central Cinema' },
-        { id: 'star', name: 'Star Cineplex' },
-        { id: 'galaxy', name: 'Galaxy Cinema' },
-        { id: 'mega', name: 'Mega Cinema' },
-    ];
-
-    const timePeriods = [
-        { id: 'weekday', name: 'Ngày thường', discount: false },
-        { id: 'weekend', name: 'Cuối tuần & Lễ', discount: false },
-        { id: 'morning', name: 'Buổi sáng (trước 12h)', discount: true },
-        { id: 'midnight', name: 'Suất chiếu khuya (sau 22h)', discount: true },
-    ];
 
     const seatTypes = [
         {
@@ -46,7 +30,7 @@ export default function TicketPricing() {
         {
             id: 'couple',
             name: 'Ghế Đôi',
-            price: 250000,
+            price: 120000,
             features: [
                 'Sofa đôi cho hai người',
                 'Không gian riêng tư',
@@ -56,50 +40,11 @@ export default function TicketPricing() {
                 'Bàn đồ ăn riêng',
             ],
             image: 'https://png.pngtree.com/png-vector/20230107/ourmid/pngtree-golden-ticket-coupon-vip-pass-template-vector-illustration-can-be-used-png-image_6553062.png',
-            color: 'red',
-        },
-    ];
-
-    const discounts = [
-        {
-            name: 'Khuyến mãi học sinh, sinh viên',
-            description: 'Giảm 15% khi xuất trình thẻ HSSV',
-            condition: 'Áp dụng ngày thường, không áp dụng ngày lễ, Tết',
-            icon: '🎓',
-        },
-        {
-            name: 'Khuyến mãi ngày thành viên',
-            description: 'Giảm 20% vào ngày thứ Tư hàng tuần',
-            condition: 'Dành cho thành viên đã đăng ký',
-            icon: '🎭',
-        },
-        {
-            name: 'Khuyến mãi cho U22',
-            description: 'Giảm 10.000đ cho khách dưới 22 tuổi',
-            condition: 'Áp dụng mọi suất chiếu, xuất trình CMND/CCCD',
-            icon: '👦',
-        },
-        {
-            name: 'Khuyến mãi buổi sáng',
-            description: 'Giảm 20% cho tất cả suất chiếu trước 12h',
-            condition: 'Áp dụng cho tất cả các loại ghế',
-            icon: '🌅',
+            color: 'blue',
         },
     ];
 
     // Calculate price based on time period
-    const calculatePrice = (basePrice, periodId) => {
-        switch (periodId) {
-            case 'weekend':
-                return basePrice * 1.2; // 20% more expensive on weekends
-            case 'morning':
-                return basePrice * 0.8; // 20% discount for morning shows
-            case 'midnight':
-                return basePrice * 0.9; // 10% discount for midnight shows
-            default:
-                return basePrice;
-        }
-    };
 
     const formatPrice = (price) => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
@@ -163,7 +108,7 @@ export default function TicketPricing() {
                                                                 {formatPrice(seatType.price)}
                                                             </h3>
                                                             <p className="text-sm text-white opacity-80">
-                                                                Giá cơ bản - Ngày thường
+                                                                Đồng giá tất cả các ngày
                                                             </p>
                                                         </div>
                                                     </div>

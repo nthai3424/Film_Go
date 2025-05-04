@@ -1,4 +1,4 @@
-import Banner from '../organisms/Banner';
+// import Banner from '../organisms/Banner';
 import Footer from '../organisms/Footer';
 import WithHeaderTemplate from './WithHeaderTemplate';
 

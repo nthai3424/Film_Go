@@ -1,11 +1,8 @@
-import { Empty, Select, Spin } from 'antd';
+import { Empty, Spin } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { handleBuildShowTimes } from '../../../helpers/handleFilterShowtimes';
-import { handleReBuildGenres } from '../../../helpers/handleReBuildGenres';
-import { useGetAllGenres } from '../../../services/genres/getAllGenres';
 import { useGetDetailMovie } from '../../../services/movie/getMovieDetail';
-import { useGetListProvince } from '../../../services/province/getAllProvince';
 import { useGetShowtimes } from '../../../services/showtime/getShowTimes';
 import Cinemas from '../../organisms/Cinemas';
 import ListCalendar from '../../organisms/ListCalendar/ListCalendar';
@@ -85,44 +82,6 @@ const MovieBooking = () => {
         return dataBuild;
     };
 
-    const { data: dataGenres } = useGetAllGenres({});
-    const genres = useMemo(
-        () =>
-            dataGenres?.data?.map((item) => {
-                return handleReBuildGenres(item);
-            }) || [],
-        [dataGenres],
-    );
-    const { data: dataProvinceQuery } = useGetListProvince({});
-    const dataProvince = useMemo(() => (dataProvinceQuery?.data ? dataProvinceQuery?.data : []), [dataProvinceQuery]);
-
-    const [filterLocation, setFilterLocation] = useState('null');
-
-    const handleFilterLocation = (value) => {
-        setFilterLocation(value);
-    };
-
-    const handleSearchFilterLocation = (value) => {
-        console.log('search:', value);
-    };
-
-    useEffect(() => {
-        if (dataShowTime && dataShowTime.length > 0) {
-            if (!filterLocation) {
-                const data = handleBuilderShowtimesForDate(dataShowTime);
-                if (data.length > 0) {
-                    setDataShowTimeRender(data);
-                }
-            } else {
-                const data = handleBuilderShowtimesForDate(dataShowTime).map((item) => {
-                    item.data = item.data.filter((itemChild) => itemChild.province_id === filterLocation);
-                    return item;
-                });
-                setDataShowTimeRender(data);
-            }
-        }
-    }, [filterLocation, dataShowTime]);
-
     const [dataShowTimeRender, setDataShowTimeRender] = useState([]);
 
     useEffect(() => {
@@ -167,28 +126,6 @@ const MovieBooking = () => {
                             setCurrentDate={setCurrentDate}
                             list={dataShowTimeRender}
                         />
-                        <ContainerWapper>
-                            <Select
-                                style={{ width: 200, marginTop: 30 }}
-                                value={filterLocation}
-                                optionFilterProp="label"
-                                showSearch
-                                onChange={handleFilterLocation}
-                                onSearch={handleSearchFilterLocation}
-                                options={[
-                                    {
-                                        value: 'null',
-                                        label: 'Tất cả khu vực',
-                                    },
-                                    ...dataProvince.map((item) => {
-                                        return {
-                                            value: item.id,
-                                            label: item.name,
-                                        };
-                                    }),
-                                ]}
-                            />
-                        </ContainerWapper>
                     </>
                 ) : (
                     <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />

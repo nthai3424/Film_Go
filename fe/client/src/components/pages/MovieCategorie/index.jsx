@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
-import { InfoCircleOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { PlayCircleOutlined } from '@ant-design/icons';
 import { Button, Card, Carousel, Tabs, Tag, Typography } from 'antd';
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { handleDataVideoPreview } from '../../../app/slices/appSlice';
-import { handleReBuildGenres } from '../../../helpers/handleReBuildGenres';
 import { handleBuilderMovies } from '../../../helpers/handleReBuildMovies';
-import { useGetAllGenres } from '../../../services/genres/getAllGenres';
 import { useGetListMovieShowing } from '../../../services/movie/getListMovieShowing';
 import { useGetListMovieUpShowing } from '../../../services/movie/getListMovieUpShowing';
 import { useGetAllMovies } from '../../../services/movie/useGetOneMovie';
@@ -14,53 +12,9 @@ import ContainerWapper from '../../templates/ContainerWapper';
 import MainTemplate from '../../templates/MainTemplate';
 import './styles.css';
 
-const movies = [
-    {
-        id: 1,
-        genres: [
-            { genre_id: 1, name: 'Hành động' },
-            { genre_id: 8, name: 'Lịch sử' },
-        ],
-        title: 'Địa đạo: Mặt trời trong bóng tối',
-        description:
-            'Phim điện ảnh đề tài kháng chiến “Địa Đạo: Mặt Trời Trong Bóng Tối” của đạo diễn Bùi Thạc Chuyên dự kiến ra rạp sớm từ 04/04/2025...',
-        poster: 'http://filmgo.io.vn/images/movies/8pRYh8fEz3G0.jpg',
-        duration: 128,
-        release_date: '2025-04-12',
-    },
-    {
-        id: 2,
-        genres: [{ genre_id: 7, name: 'Hài hước' }],
-        title: 'Cưới Ma Giải Hạn',
-        description: 'Menn, một tên trộm cắp đang làm tay trong cho cảnh sát... bắt anh phải kết hôn với một hồn ma.',
-        poster: 'http://filmgo.io.vn/images/movies/jT2Nwr7NYbzq.jpg',
-        duration: 128,
-        release_date: '2025-04-12',
-    },
-];
-
 const { Title } = Typography;
 const MovieCate = () => {
-    const { data } = useGetAllGenres({});
-    const genres = useMemo(
-        () =>
-            data?.data?.map((item) => {
-                return handleReBuildGenres(item);
-            }) || [],
-        [data],
-    );
-
     const { data: dataMovies } = useGetAllMovies({});
-
-    const targetGenres = useMemo(() => {
-        if (!data?.data || !dataMovies?.data) return [];
-        return data.data.slice(0, 3).map((item) => ({
-            cate: item.name,
-            data: dataMovies.data
-                .filter((movie) => movie.genres?.some((genre) => genre.genre_id === item.id))
-                .map(handleBuilderMovies),
-        }));
-    }, [data?.data, dataMovies?.data]);
 
     const listMovies = useMemo(
         () =>
@@ -113,13 +67,16 @@ const MovieCate = () => {
                 <div className="pt-[20px] h-[400px]">
                     <Carousel autoplay arrows className="arrow_show">
                         <div className="h-full">
-                            <img src="/images/banner2.jpg" alt="On set filming" className="w-full h-[400px]" />
+                            <img src="/images/thamtukien.jpg" alt="On set filming" className="w-full h-[400px]" />
+                        </div>
+                        <div className="h-full">
+                            <img src="/images/latmat.jpg" alt="On set filming" className="w-full h-[400px]" />
                         </div>
                         <div className="h-full">
                             <img src="/images/banner.jpg" alt="On set filming" className="w-full h-[400px]" />
                         </div>
                         <div className="h-full">
-                            <img src="/images/banner3.jpg" alt="On set filming" className="w-full h-[400px]" />
+                            <img src="/images/banner2.jpg" alt="On set filming" className="w-full h-[400px]" />
                         </div>
                     </Carousel>
                 </div>

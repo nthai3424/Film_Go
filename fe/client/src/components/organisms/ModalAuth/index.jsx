@@ -207,17 +207,6 @@ const LoginModal = () => {
                                 {isLogin ? ' Đăng kí' : 'Đăng nhập'}
                             </a>
                         </div>
-
-                        {/* <div className="text-center text-xs text-gray-500">
-                            I agree to the{' '}
-                            <a href="#" className="text-gray-500">
-                                Terms & Conditions
-                            </a>{' '}
-                            &{' '}
-                            <a href="#" className="text-gray-500">
-                                Privacy Policy
-                            </a>
-                        </div> */}
                     </Form>
                 ) : (
                     <Form form={form} name="register" layout="vertical" onFinish={onFinish} className="pt-4">
@@ -316,17 +305,6 @@ const LoginModal = () => {
                                 {isLogin ? ' Đăng kí' : 'Đăng nhập'}
                             </a>
                         </div>
-
-                        {/* <div className="text-center text-xs text-gray-500">
-                            I agree to the{' '}
-                            <a href="#" className="text-gray-500">
-                                Terms & Conditions
-                            </a>{' '}
-                            &{' '}
-                            <a href="#" className="text-gray-500">
-                                Privacy Policy
-                            </a>
-                        </div> */}
                     </Form>
                 )}
             </Modal>
