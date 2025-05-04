@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, message, Select } from "antd";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
+
 import axios from "axios";
 import dayjs from "dayjs";
 
 const { Option } = Select;
 
 const UpdateShow = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+
   const nav = useNavigate();
   const { id } = useParams(); // Get the showtime ID from the URL
   const [screens, setScreens] = useState([]);
@@ -60,6 +63,24 @@ const UpdateShow = () => {
     onSuccess: () => {
       nav(`/admin/list-showtime`);
     },
+    onError: (error) => {
+      let errorMessage = "Đã có lỗi xảy ra";
+
+      if (error.response?.data) {
+        const data = error.response.data;
+
+        // Laravel trả về errors (object) -> join tất cả messages
+        if (data.errors) {
+          const messages = Object.values(data.errors).flat();
+          errorMessage = messages.join(", ");
+        }
+      }
+
+      messageApi.open({
+        type: "error",
+        content: errorMessage,
+      });
+    },
   });
 
   const onFinish = (values) => {
@@ -94,6 +115,7 @@ const UpdateShow = () => {
       onFinish={onFinish}
       autoComplete="off"
     >
+      {contextHolder}
       <h1 className="text-3xl mb-5">Chỉnh sửa xuất chiếu</h1>
 
       <Form.Item

@@ -51,10 +51,22 @@ const ListShow = () => {
       });
       queryClient.invalidateQueries({ queryKey: ["showtimes"] });
     },
-    onError: () => {
+    onError: (error) => {
+      let errorMessage = "Đã có lỗi xảy ra";
+
+      // Kiểm tra lỗi từ phía backend (thông báo từ "message")
+      if (error.response?.data) {
+        const data = error.response.data;
+
+        // Kiểm tra nếu có trường "message" trong phản hồi lỗi
+        if (data.message) {
+          errorMessage = data.message; // Hiển thị thông báo lỗi từ backend
+        }
+      }
+
       messageApi.open({
         type: "error",
-        content: "Xóa suất thất bại, vui lòng thử lại sau",
+        content: errorMessage,
       });
     },
   });
