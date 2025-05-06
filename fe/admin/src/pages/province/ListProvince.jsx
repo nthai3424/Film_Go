@@ -85,7 +85,7 @@ const ListProvince = () => {
     <>
       {contextHolder}
       <center>
-        <h1 className="text-3xl mb-5">Quản lý phòng chiếu</h1>
+        <h1 className="text-3xl mb-5">Quản lý khu vực</h1>
       </center>
       <Link to="/admin/creat-province" className="btn btn-primary">
         Thêm khu vực

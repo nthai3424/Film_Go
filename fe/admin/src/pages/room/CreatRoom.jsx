@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, message, Select } from "antd";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const { Option } = Select;
 const CreatRoom = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+
   const nav = useNavigate();
   const [cinemas, setCinemas] = useState([]);
   useEffect(() => {
@@ -33,6 +35,24 @@ const CreatRoom = () => {
     onSuccess: () => {
       nav(`/admin/list-screen`);
     },
+    onError: (error) => {
+      let errorMessage = "Đã có lỗi xảy ra";
+
+      if (error.response?.data) {
+        const data = error.response.data;
+
+        // Laravel trả về errors (object) -> join tất cả messages
+        if (data.errors) {
+          const messages = Object.values(data.errors).flat();
+          errorMessage = messages.join(", ");
+        }
+      }
+
+      messageApi.open({
+        type: "error",
+        content: errorMessage,
+      });
+    },
   });
   const onFinish = (values) => {
     mutate(values);
@@ -56,6 +76,7 @@ const CreatRoom = () => {
       onFinish={onFinish}
       autoComplete="off"
     >
+      {contextHolder}
       <h1 className="text-3xl mb-5">Thêm phòng chiếu</h1>
       <Form.Item
         label="Tên phòng"

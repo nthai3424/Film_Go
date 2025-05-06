@@ -139,7 +139,7 @@ const LayoutAdmin = () => {
             background: "#fff",
           }}
         >
-          <h2 style={{ color: "#000", margin: 0 }}>Quản lý hệ thống</h2>
+          <h2 style={{ color: "#000", margin: 0 }}></h2>
           <button className="btn btn-primary" onClick={handleLogout}>
             Đăng xuất
           </button>

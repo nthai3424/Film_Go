@@ -82,7 +82,7 @@ const LayoutStaff = () => {
                 padding: "10px",
               }}
             >
-              <h1 style={{ margin: 0 }}>Hello @{user[0].name}</h1>
+              <h1 style={{ margin: 0 }}></h1>
               <button
                 className="btn btn-danger"
                 onClick={handleLogout}
