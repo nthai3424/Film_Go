@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { CopyOutlined, DownOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Badge, Button, Card, Col, Descriptions, List, message, Modal, Popover, Row, Spin } from 'antd';
-import { HttpStatusCode } from 'axios';
+// import { HttpStatusCode } from 'axios';
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
@@ -29,7 +29,7 @@ const SeatBooking = () => {
     const [searchParams] = useSearchParams();
     const queryParams = useMemo(() => Object?.fromEntries(searchParams.entries()), [searchParams]);
     const [booking, setBooking] = useState([]);
-    const [dataHold, setDataHold] = useState([]);
+    // const [dataHold, setDataHold] = useState([]);
 
     const { data: movieData } = useGetMovie({ id: queryParams?.filmId });
     const { data: showTimeData } = useGetShowTime({ id: queryParams?.showtime });
@@ -38,35 +38,35 @@ const SeatBooking = () => {
     const movie = useMemo(() => (movieData?.data ? handleBuilderMovies(movieData?.data) : null), [movieData]);
     const [promoCode, setPromoCode] = useState([]);
 
-    useEffect(() => {
-        const _fetch = async () => {
-            try {
-                const res = await axios.get('https://booking-runtime.vercel.app/booking');
-                if (res.data.code === HttpStatusCode.Ok) {
-                    setDataHold(res.data.data);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        const id = setInterval(_fetch, 600);
-        return () => clearInterval(id);
-    }, []);
+    // useEffect(() => {
+    //     const _fetch = async () => {
+    //         try {
+    //             const res = await axios.get('https://booking-runtime.vercel.app/booking');
+    //             if (res.data.code === HttpStatusCode.Ok) {
+    //                 setDataHold(res.data.data);
+    //             }
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     const id = setInterval(_fetch, 600);
+    //     return () => clearInterval(id);
+    // }, []);
 
-    const toggleHold = async (id, type) => {
-        try {
-            if (type === 'add') {
-                await axios.post('https://booking-runtime.vercel.app/booking', {
-                    id,
-                    show_time_id: queryParams?.showtime,
-                });
-            } else {
-                await axios.delete(`https://booking-runtime.vercel.app/booking/${id}/${queryParams?.showtime}`);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    // const toggleHold = async (id, type) => {
+    //     try {
+    //         if (type === 'add') {
+    //             await axios.post('https://booking-runtime.vercel.app/booking', {
+    //                 id,
+    //                 show_time_id: queryParams?.showtime,
+    //             });
+    //         } else {
+    //             await axios.delete(`https://booking-runtime.vercel.app/booking/${id}/${queryParams?.showtime}`);
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
     useEffect(() => {
         const _fetch = async () => {
@@ -179,7 +179,7 @@ const SeatBooking = () => {
                     });
                     return;
                 }
-
+                // console.log(data)
                 setInterval(() => {
                     axios.get('/tickets').then((res) => {
                         const { data } = res.data;
@@ -546,8 +546,8 @@ const SeatBooking = () => {
                                         return (
                                             <div className="w-[100%]" key={index}>
                                                 <ListChair
-                                                    toggleHold={toggleHold}
-                                                    dataHold={dataHold}
+                                                    // toggleHold={toggleHold}
+                                                    // dataHold={dataHold}
                                                     target={item}
                                                     booked={data?.booked}
                                                     booking={booking}
@@ -569,7 +569,7 @@ const SeatBooking = () => {
                                         { bg: '#f14052', label: 'Ghế VIP' },
                                         { bg: '#ffc107', label: 'Ghế Đôi' },
                                         { bg: '#1d59a2', label: 'Ghế Đang Chọn' },
-                                        { bg: '#0dcaf0', label: 'Ghế Đang Giữ' },
+                                        // { bg: '#0dcaf0', label: 'Ghế Đang Giữ' },
                                     ].map((item, index) => {
                                         return (
                                             <div className="flex justify-start items-center gap-[10px]" key={index}>
@@ -728,17 +728,7 @@ function ModalCheckOut({ isModalOpen, handleCancel, handleCreateOrder, bookings,
             case 1:
                 setStep(2);
                 break;
-            // case 2:
-            //     setStep(3);
-            //     break;
         }
-    };
-
-    const handleCreateOrderModal = (type) => {
-        handleCreateOrder(productCheckOut);
-        // if (type === 'banking') {
-        //     setStep(3);
-        // }
     };
 
     return (
@@ -802,62 +792,6 @@ function ModalCheckOut({ isModalOpen, handleCancel, handleCreateOrder, bookings,
                     bookings={bookings}
                     className={'fixed w-full h-full top-0 left-0 right-0 bottom-0 z-[9999]'}
                 />
-            )}
-            {step === 3 && (
-                <div className="flex gap-2">
-                    <div
-                        style={{
-                            border: '1px solid #ccc',
-                            borderRadius: 10,
-                        }}
-                        className="shadow-md"
-                    >
-                        <img
-                            className=" w-[300px] h-[300px]"
-                            src={`https://qr.sepay.vn/img?acc=15999428888&bank=TPBank&amount=${Math.floor(
-                                calculateTotal(productCheckOut) + parseFloat(getPriceSeatTotal()),
-                            )}&des=jwjst6&template=compact`}
-                            alt=""
-                        />
-                        <div className="flex justify-center items-center flex-col gap-1 pt-1">
-                            <Spin indicator={<LoadingOutlined spin />} size="small"></Spin>
-                            <p className="text-[10px] pb-1">
-                                <strong>Sepay checking</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div className="shadow-md p-4 rounded flex-1">
-                        <Descriptions
-                            bordered
-                            column={1}
-                            size="middle"
-                            title={
-                                <div className="flex justify-center mb-4">
-                                    <img
-                                        src="https://my.sepay.vn/assets/images/banklogo/tpbank-icon.png"
-                                        alt="logo"
-                                        className="h-8"
-                                    />
-                                </div>
-                            }
-                        >
-                            <Descriptions.Item label="Ngân hàng">TPBank</Descriptions.Item>
-                            <Descriptions.Item label="Thụ hưởng">NGUYEN TRUONG SON</Descriptions.Item>
-                            <Descriptions.Item label="Số tài khoản">
-                                <div className="flex items-center">
-                                    15999428888
-                                    <DownOutlined className="ml-2" />
-                                </div>
-                            </Descriptions.Item>
-                            <Descriptions.Item label="Số tiền">
-                                {formatVND(
-                                    Math.floor(calculateTotal(productCheckOut) + parseFloat(getPriceSeatTotal())),
-                                )}
-                            </Descriptions.Item>
-                            <Descriptions.Item label="Nội dung CK">jwjst6</Descriptions.Item>
-                        </Descriptions>
-                    </div>
-                </div>
             )}
         </Modal>
     );
@@ -1048,64 +982,5 @@ const Chair = ({
                 </div>
             </div>
         </Popover>
-    );
-};
-
-const DiscountSelector = ({ discounts }) => {
-    const currentDate = new Date().toISOString().split('T')[0];
-    const [selectedCode, setSelectedCode] = useState(null);
-
-    const handleCopy = (e, code) => {
-        e.stopPropagation();
-        navigator.clipboard.writeText(code);
-        message.success('Đã copy mã giảm giá!');
-    };
-
-    const handleSelect = (item) => {
-        const disabled = item.status !== 'active' || item.end_date < currentDate;
-        if (!disabled) {
-            setSelectedCode(item.code);
-        }
-    };
-
-    return (
-        <List
-            itemLayout="horizontal"
-            dataSource={discounts}
-            renderItem={(item) => {
-                const disabled = item.status !== 'active' || item.end_date < currentDate;
-                const isSelected = selectedCode === item.code;
-                return (
-                    <List.Item
-                        onClick={() => handleSelect(item)}
-                        className={`cursor-pointer p-4 border rounded mb-2  ${
-                            disabled
-                                ? 'opacity-50 cursor-not-allowed'
-                                : isSelected
-                                ? 'border-blue-500'
-                                : 'border-gray-200'
-                        }`}
-                    >
-                        <div className="flex justify-between items-center w-full px-2 py-1">
-                            <div className="flex flex-col">
-                                <span className="font-semibold">{item.code}</span>
-                                <span className="text-sm text-gray-500">{item.description}</span>
-                            </div>
-                            <div className="flex items-center">
-                                {disabled && (
-                                    <Badge count="Hết hạn" style={{ backgroundColor: '#f5222d' }} className="mr-2" />
-                                )}
-                                <Button
-                                    type="primary"
-                                    size="small"
-                                    icon={<CopyOutlined />}
-                                    onClick={(e) => handleCopy(e, item.code)}
-                                />
-                            </div>
-                        </div>
-                    </List.Item>
-                );
-            }}
-        />
     );
 };
